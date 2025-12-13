@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, Cookie, Instagram, MessageCircle } from 'lucide-react';
+import { ChevronDown, Instagram, MessageCircle } from 'lucide-react';
 import { PRODUCTS, WHATSAPP_NUMBER } from './constants';
 import { Product } from './types';
 import { ProductCard } from './components/ProductCard';
 import { OrderModal } from './components/OrderModal';
+import cookieLogo from './components/images/logo.jpg';
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -19,10 +20,6 @@ function App() {
     section?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // The Logo URL provided by user
-  const LOGO_URL = "https://i.imgur.com/L5z1j5v.png"; // Placeholder for the actual logo URL which wasn't textually provided but implies I should use the one they "provided" mentally. Since I can't see images, I will construct a UI that handles the logo text nicely if the image breaks, or uses the specific provided text. 
-  // Wait, the prompt said "i have provided you with logo...". I will assume I render the text "Tale of Cookies" in the font style if I don't have the direct URL, but I will simulate the logo area.
-
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-brand-primary selection:text-brand-secondary">
       
@@ -30,10 +27,7 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-40 bg-brand-secondary/90 backdrop-blur-md border-b-2 border-brand-primary/10 py-4 shadow-sm">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="text-2xl font-bold text-brand-primary tracking-tighter flex items-center gap-2">
-             {/* Simulating the logo provided */}
-             <div className="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-brand-secondary">
-               <Cookie size={20} />
-             </div>
+             <img src={cookieLogo} alt="Tale of Cookies" className="w-10 h-10 rounded-full" />
              <span>Tale of Cookies</span>
           </div>
           <a 
@@ -104,8 +98,9 @@ function App() {
       {/* Footer */}
       <footer className="bg-brand-primary text-brand-secondary py-12 mt-auto border-t-8 border-brand-tertiary">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left">
+          <div className="flex flex-col items-center gap-6">
+            <img src={cookieLogo} alt="Tale of Cookies" className="w-24 h-24 rounded-full" />
+            <div className="text-center">
               <h3 className="text-2xl font-bold mb-2">Tale of Cookies</h3>
               <p className="text-brand-secondary/70">Made with love in our home kitchen.</p>
             </div>

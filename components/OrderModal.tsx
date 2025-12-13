@@ -122,7 +122,7 @@ Please confirm my order!
               value={formData.customerName}
               onChange={handleChange}
               required 
-              placeholder="e.g. John Doe"
+              placeholder="e.g. omer"
             />
             
             <Input 
@@ -132,7 +132,7 @@ Please confirm my order!
               value={formData.phone}
               onChange={handleChange}
               required 
-              placeholder="+91 99999 99999"
+              placeholder="+91 9876543210"
             />
 
             <Input 
@@ -142,7 +142,7 @@ Please confirm my order!
               value={formData.email}
               onChange={handleChange}
               required 
-              placeholder="john@example.com"
+              placeholder="taleofcookies@gmail.com"
             />
 
             <Input 

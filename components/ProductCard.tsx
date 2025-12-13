@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product } from '../types';
 import { Button } from './Button';
-import { Cookie } from 'lucide-react';
+import cookieLogo from './images/logo.jpg';
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +16,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuy }) => {
         <img 
           src={product.image} 
           alt={product.name}
-          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute top-4 right-4 z-20 bg-brand-secondary text-brand-primary font-bold px-4 py-2 rounded-full shadow-md text-sm">
           ₹{product.price}/box
@@ -25,8 +25,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuy }) => {
       
       <div className="p-6 flex flex-col flex-grow text-center">
         <div className="mb-4">
-          <div className="inline-block p-3 bg-brand-tertiary/10 rounded-full mb-3 text-brand-tertiary group-hover:text-brand-primary transition-colors">
-            <Cookie size={32} />
+          <div className="inline-block mb-3">
+            <img src={cookieLogo} alt="Tale of Cookies" className="w-16 h-16 rounded-full mx-auto" />
           </div>
           <h3 className="text-2xl font-bold text-brand-primary mb-2 leading-tight">
             {product.name}
