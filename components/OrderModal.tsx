@@ -20,7 +20,6 @@ export const OrderModal: React.FC<OrderModalProps> = ({ product, isOpen, onClose
     quantity: 1
   });
 
-  // Reset form when modal opens
   useEffect(() => {
     if (isOpen) {
       setFormData({
@@ -40,7 +39,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({ product, isOpen, onClose
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const upiLink = `upi://pay?pa=hiba.noor192003@okhdfcbank&pn=Tale%20of%20Cookies&am=${totalAmount}&cu=INR`;
+    // UPI link without the amount to prevent issues with some apps.
+    const upiLink = `upi://pay?pa=hiba.noor192003@okhdfcbank&pn=Tale%20of%20Cookies&cu=INR`;
 
     const message = `
 *New Order Request - Tale of Cookies* 🍪
@@ -58,7 +58,7 @@ Address: ${formData.address}
 
 ---------------------------
 *Payment Details:*
-If you want to pay now, click on this link to pay via UPI and send the screenshot to this number:
+To pay now, click the link below. You'll need to manually enter the total amount (₹${totalAmount}) in your UPI app. Please send a screenshot of the completed payment to this number:
 ${upiLink}
 
 Please confirm my order!
@@ -83,12 +83,12 @@ Please confirm my order!
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-brand-primary/60 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Content */}
-      <div className="relative bg-brand-secondary w-full max-w-md rounded-3xl shadow-2xl border-4 border-brand-primary overflow-hidden animate-fade-in-up">
+      <div className="relative bg-white/10 backdrop-blur-lg w-full max-w-md rounded-3xl shadow-2xl border-2 border-brand-primary/20 overflow-hidden animate-fade-in-up text-white">
         {/* Header */}
         <div className="bg-brand-primary p-4 flex justify-between items-center text-brand-secondary">
           <h2 className="text-xl font-bold flex items-center gap-2">
@@ -104,18 +104,18 @@ Please confirm my order!
         </div>
 
         {/* Body */}
-        <div className="p-6 max-h-[80vh] overflow-y-auto">
-          <div className="mb-6 flex items-center gap-4 bg-brand-tertiary/20 p-4 rounded-xl">
-            <div className="w-16 h-16 rounded-lg overflow-hidden bg-brand-tertiary flex-shrink-0">
-               <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+        <form onSubmit={handleSubmit} className="max-h-[80vh] overflow-y-auto">
+          <div className="p-6 space-y-6">
+            <div className="flex items-center gap-4 bg-black/20 p-4 rounded-xl">
+              <div className="w-16 h-16 rounded-lg overflow-hidden bg-brand-tertiary flex-shrink-0">
+                 <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h3 className="font-bold text-white">{product.name}</h3>
+                <p className="text-sm font-semibold text-white/80">₹{product.price} / box</p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-bold text-brand-primary">{product.name}</h3>
-              <p className="text-sm font-semibold text-brand-primary">₹{product.price} / box</p>
-            </div>
-          </div>
 
-          <form onSubmit={handleSubmit}>
             <Input 
               label="Your Name" 
               name="customerName"
@@ -155,8 +155,8 @@ Please confirm my order!
               placeholder="Full address with landmark"
             />
 
-            <div className="flex items-center justify-between mb-8 p-4 bg-brand-primary/10 rounded-xl border border-brand-primary/20">
-              <label className="font-bold text-brand-primary text-lg">Quantity (Boxes)</label>
+            <div className="flex items-center justify-between p-4 bg-black/20 rounded-xl border border-white/20">
+              <label className="font-bold text-white text-lg">Quantity (Boxes)</label>
               <div className="flex items-center gap-3">
                 <button 
                   type="button"
@@ -165,7 +165,7 @@ Please confirm my order!
                 >
                   -
                 </button>
-                <span className="text-2xl font-bold w-8 text-center">{formData.quantity}</span>
+                <span className="text-2xl font-bold w-8 text-center text-white">{formData.quantity}</span>
                 <button 
                   type="button"
                   onClick={() => setFormData(p => ({ ...p, quantity: p.quantity + 1 }))}
@@ -175,17 +175,20 @@ Please confirm my order!
                 </button>
               </div>
             </div>
-
-            <div className="flex items-center justify-between mb-6 text-xl font-bold text-brand-primary border-t-2 border-dashed border-brand-tertiary pt-4">
+          </div>
+          
+          {/* Footer */}
+          <div className="bg-black/20 p-6">
+            <div className="flex items-center justify-between mb-6 text-xl font-bold text-white border-t-2 border-dashed border-brand-tertiary/50 pt-6">
               <span>Total Amount:</span>
               <span>₹{totalAmount}</span>
             </div>
 
-            <Button type="submit" fullWidth className="text-lg py-4 shadow-xl">
+            <Button type="submit" fullWidth className="text-lg py-4 shadow-xl !bg-brand-primary hover:!bg-brand-tertiary">
               Checkout on WhatsApp
             </Button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );

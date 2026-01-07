@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="./components/images/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tale of Cookies | Freshly Baked Comfort</title>
-    <link rel="icon" href="./components/images/logo.jpg" />
     
-    <!-- Google Fonts: Fredoka is a rounded font similar to Winky Sans -->
+    <!-- Google Fonts: Fredoka -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,53 +17,54 @@
         theme: {
           extend: {
             colors: {
-              brand: {
-                primary: '#7B411B',   // Dark Brown
-                secondary: '#E7D0A9', // Cream/Beige
-                tertiary: '#B87C4C',  // Cookie Brown
-              }
+              'brand-primary': '#69388B',
+              'brand-secondary': '#FFD800',
+              'brand-tertiary': '#A076C4',
             },
             fontFamily: {
-              sans: ['Fredoka', 'sans-serif'],
+                sans: ['Fredoka', 'sans-serif'],
+                authenia: ['Authenia', 'cursive'],
             }
           }
         }
       }
     </script>
     <style>
-      body {
-        background-color: #E7D0A9;
-        color: #7B411B;
+      @font-face {
+        font-family: 'Authenia';
+        src: url('./Authenia.otf') format('opentype');
       }
-      /* Custom scrollbar for webkit */
+      /* Custom scrollbar styles */
       ::-webkit-scrollbar {
         width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #E7D0A9;
+        background: #69388B; /* Dark purple */
       }
       ::-webkit-scrollbar-thumb {
-        background: #B87C4C;
+        background: #A076C4; /* Lighter purple */
         border-radius: 5px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #7B411B;
+        background: #FFD800; /* Yellow */
+      }
+      body {
+        background-image: url('./components/images/backgrounf.png'); 
+        background-attachment: scroll; 
+        background-size: 100% auto; 
+        background-repeat: repeat-y; 
+        background-position: center top;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+    
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
 </html>
